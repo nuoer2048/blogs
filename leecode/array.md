@@ -205,7 +205,37 @@ function fibonacci(n) {
 # 岛屿数量
 ```javascript
 function numIslands(grid){
-    
+   const rl = grid.length;
+   const cl = grid[0].length;
+   
+   function isArea(r,c){
+    return r>=0&&c>=0&&r<rl&&c<cl
+   }
+
+   function bfs(r,c){
+      if(!isArea(r,c)){
+        return;
+      }
+      if(grid[r][c] !== "1"){
+        return;
+      }
+      grid[r][c]="2";
+      bfs(r-1,c);
+      bfs(r+1,c);
+      bfs(r,c-1);
+      bfs(r,c+1)
+   }
+
+   let count = 0;
+
+   for(var r = 0; r<rl;r++){
+    for(var c = 0; c<cl; c++){
+       if(grid[r][c]==="1"){
+          bfs(r,c);
+          count++
+       }
+    }
+   }
 }
 
 ```
