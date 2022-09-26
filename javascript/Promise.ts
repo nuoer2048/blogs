@@ -140,7 +140,7 @@ function Promise(resolver: any) {
       // 按照顺序，全部执行完，就 reesolve
       const len = promises.length;
       const promisedCounter = 0;
-      const promiseValue = new Array(promisedCounter);
+      const promiseValue = new Array(len);
       for(let i = 0;i<len;i++){
         (function(i){
           Promise.resolve(promises[i]).then(function(res) {

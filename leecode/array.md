@@ -105,7 +105,7 @@ function minNumberInRotateArray(arr){
         if(arr[mind]>arr[hight]){
             low = mind+1
         }else if(arr[mind]===arr[hight]){
-            hight = hight -2
+            hight = hight --
         }else {
             hight = mind
         }
