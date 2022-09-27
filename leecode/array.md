@@ -239,3 +239,200 @@ function numIslands(grid){
 }
 
 ```
+
+# 判断一个链表是否是回文结构
+```javascript
+function isPalindroml1(head){
+  const temp = new Array();
+  const cur = head;
+  while( cur){
+   temp.push(cur);
+   cur = cur.next
+  }
+  while(head){
+    if(head.value !== temp.pop().value){
+      return false
+    }
+    head = head.next
+  }
+  return true
+}
+
+function 2(head){
+  const temp = new Array();
+  const slow = head, fast = head;
+
+}
+
+```
+
+# 二叉树
+```javascript
+// 前序遍历
+function pre(root){
+  const res =[];
+  function _pre(node){
+   if(!node){
+    return
+   }
+   res.push(node.val);
+   _pre(node.left)
+   _pre(node.right)
+  }
+  _pre(root)
+  return res;
+}
+
+
+function pre_stack(root){
+  const stack = [root], res = [];
+  while(stack.length){
+    const cur = stack.pop();
+    res.push(cur.val);
+    cur.right && stack.push(cur.right);
+    cur.left && stack.push(cur.left)
+  }
+  return res;
+}
+
+
+// 中序
+function inorder(root){
+  const res = [];
+
+   function _inorder(node){
+     if(!node){
+      return
+     }
+     _inorder(node.left);
+     res.push(node.value);
+     _inorder(node.right)
+   }
+
+  return res;
+}
+
+function inorder2(root){
+  const res = [];
+  const stack = [];
+  let cur = root;
+  if(!root) return;
+
+  while(stack.length || cur){
+    while(cur){
+      stack.push(cur);
+    cur= cur.left;
+    }
+    const node = stack.pop();
+    res.push(node.value);
+    if(node.right){
+      cur = node.right
+    }
+  }
+
+  return res;
+
+}
+
+// 后序
+function postOrder(root){
+  const res = [];
+
+  function _post(node){
+    if(!node){
+      return;
+    }
+    _post(node.left);
+    _post(node.right);
+    res.push(node.value)
+  }
+
+  return res;
+}
+
+function post2(root){
+ if(!root) return;
+ const res = [], stack = [root];
+ while(stack.length){
+   res.unshift(stack.pop().length);
+   cur.left && stack.push(cur.left);
+   cur.right && stack.push(cur.right);
+ }
+ return res;
+}
+
+// 层序遍历
+
+function level(root){
+  const res = [];
+
+  function _level(node, level){
+   if(!root){
+    return null
+   }
+   res[level] = res[level] || [];
+   res[levl].push(node.value);
+   _level(node.left, level+1);
+   _level(node.right, level+1)
+  }
+
+  return res;
+}
+
+
+function level2(root){
+  const res = [];
+  const queue = [root];
+  let level = 0;
+  while(queue.length){
+    res.push([]);
+    const len = queue.length;
+    for(var i = 0; i< len; i++>){
+      const node = queue.shift();
+       res[i].push(node.value);
+       node.left && queue.push(node.left);
+       node.right && queue.node.right;
+    }
+    level++
+  }
+
+  return res;
+
+
+}
+
+
+```
+# 主持人调度
+```javascript
+function minmumNumberOfHost( n ,  startEnd ) {
+    // write code hstartEnd.map(item =>item[0])ere
+    let start =startEnd.map(item =>item[0]).sort((a,b)=>a-b);
+    let end= startEnd.map(item=>item[1]).sort((a,b)=>a-b);
+    let count =0,j=0;
+    for(let i=0;i<start.length;i++){
+       if(start[i]<end[j])
+           //某个活动i的开始时间早于活动j 的结束时间，增加主持人
+           count++;
+        else
+            //否则，不用增加主持人
+            j++; 
+    }
+    return count;
+}
+```
+
+# 主持人调度
+```javascript
+function candy( arr ) {
+    let res=new Array(arr.length).fill(1);
+    for(let i=0;i<arr.length;i++)
+        if (arr[i+1] > arr[i]){
+          res[i+1] = res[i] + 1
+        }
+    for(let j=arr.length-1;j>0;j--)
+        if(arr[j-1]>arr[j] && res[j-1]<=res[j])
+            res[j-1]= res[j]+1;
+    return res.reduce((pre,cur)=>pre+cur);
+}
+```
